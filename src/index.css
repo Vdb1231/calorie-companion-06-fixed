@@ -1,0 +1,162 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 45 100% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 45 100% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 45 100% 20%;
+
+    --primary: 340 50% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 30% 96%;
+    --secondary-foreground: 340 50% 40%;
+
+    --muted: 340 40% 96%;
+    --muted-foreground: 340 30% 50%;
+
+    --accent: 340 30% 90%;
+    --accent-foreground: 340 50% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 340 30% 90%;
+    --input: 340 30% 90%;
+    --ring: 340 50% 65%;
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-size-adjust: 100%;
+  }
+
+  input, textarea, button, select {
+    @apply text-base;
+    font-size: 16px; /* Prevents zoom on mobile */
+  }
+
+  /* Custom utility classes */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-rose-gold-200/20 shadow-sm;
+  }
+
+  .glass-dark {
+    @apply bg-foreground/10 backdrop-blur-md border border-foreground/10 shadow-sm;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .input-gold {
+    @apply border-rose-gold-200 focus:border-rose-gold-400 focus:ring-rose-gold-400/20 bg-rose-gold-50/50;
+  }
+
+  .btn-gold {
+    @apply bg-rose-gold-500 hover:bg-rose-gold-600 text-white shadow-rose-gold-500/20 shadow-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-white {
+    @apply bg-white hover:bg-rose-gold-50 text-rose-gold-800 shadow-sm border border-rose-gold-200 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-subtle {
+    @apply bg-rose-gold-100 hover:bg-rose-gold-200 text-rose-gold-900 transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-rose-gold-100 text-rose-gold-900 transition-all duration-300;
+  }
+
+  .link-gold {
+    @apply text-rose-gold-700 hover:text-rose-gold-500 underline underline-offset-4 decoration-rose-gold-200 hover:decoration-rose-gold-400 transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md hover:bg-white;
+  }
+
+  /* Animated elements */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-4 transition-all duration-700;
+  }
+
+  .animate-on-scroll.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  /* New gradient backgrounds */
+  .bg-gold-gradient {
+    @apply bg-gradient-to-br from-rose-gold-50 via-white to-rose-gold-100;
+  }
+  
+  .bg-frosted {
+    @apply bg-white/80 backdrop-blur-sm border border-rose-gold-100/30 shadow-sm;
+  }
+  
+  /* Mobile optimization */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+}
+
+/* Custom animations and transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Mobile fixes */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  h1, h2, h3 {
+    word-break: break-word;
+  }
+}
